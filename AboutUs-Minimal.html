@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Scriptiqo · Minimal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-2: #f6f6f5;
+    --ink: #0a0a0a;
+    --ink-2: #505050;
+    --ink-3: #9a9a9a;
+    --rule: #e8e8e6;
+    --rule-strong: #151515;
+    --accent: oklch(55% 0.22 295);
+    --sans: 'Geist', -apple-system, system-ui, sans-serif;
+    --mono: 'Geist Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+  @media (max-width: 640px) { .wrap { padding: 0 24px; } }
+
+  /* ————— NAV ————— */
+  nav.top {
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--rule);
+    z-index: 20;
+  }
+  .top-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+  }
+  .logo {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo::before {
+    content: "";
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .top-links {
+    display: flex;
+    gap: 32px;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .top-links a { text-decoration: none; color: inherit; }
+  .top-links a:hover { color: var(--ink); }
+  @media (max-width: 640px) { .top-links { display: none; } }
+
+  /* ————— HERO ————— */
+  .hero {
+    padding: 160px 0 140px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--ink-2);
+    margin-bottom: 40px;
+  }
+  .eyebrow .dot {
+    width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
+  }
+  .hero h1 {
+    font-size: clamp(44px, 6.6vw, 92px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+    max-width: 12ch;
+    margin-bottom: 40px;
+  }
+  .hero h1 .mute { color: var(--ink-3); }
+  .hero .sub {
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.45;
+    color: var(--ink-2);
+    max-width: 620px;
+    letter-spacing: -0.005em;
+  }
+
+  /* ————— STATS ————— */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--rule);
+  }
+  .stat {
+    padding: 56px 0 56px;
+    border-right: 1px solid var(--rule);
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+  .stat:first-child { padding-left: 0; }
+  .stat:last-child { border-right: none; padding-right: 0; }
+  .stat .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .stat .num {
+    font-size: clamp(42px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  .stat .desc {
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  @media (max-width: 820px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat { padding: 36px 24px; border-bottom: 1px solid var(--rule); }
+    .stat:first-child, .stat:nth-child(3) { padding-left: 0; }
+    .stat:nth-child(2), .stat:last-child { border-right: none; padding-right: 0; }
+    .stat:nth-child(3), .stat:last-child { border-bottom: none; }
+  }
+  @media (max-width: 480px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none; padding: 28px 0; }
+    .stat:last-child { border-bottom: none; }
+  }
+
+  /* ————— SECTION SHELL ————— */
+  section.block { padding: 140px 0; border-bottom: 1px solid var(--rule); }
+  @media (max-width: 640px) { section.block { padding: 88px 0; } }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 48px;
+    margin-bottom: 72px;
+    align-items: start;
+  }
+  .section-head .tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--ink-3);
+    padding-top: 12px;
+  }
+  .section-head h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.028em;
+    font-weight: 500;
+    max-width: 20ch;
+  }
+  .section-head h2 .mute { color: var(--ink-3); }
+  @media (max-width: 720px) {
+    .section-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 48px; }
+  }
+
+  /* ————— STORY ————— */
+  .story-body {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 48px;
+  }
+  /* .story-body .empty { } */
+  .story-body .text {
+    max-width: 680px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .story-body .text p + p { margin-top: 20px; }
+  .story-body .text .muted { color: var(--ink-2); }
+  @media (max-width: 720px) {
+    .story-body { grid-template-columns: 1fr; gap: 0; }
+    .story-body .empty { display: none; }
+  }
+
+  /* ————— SERVICES ————— */
+  .service-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .service-card {
+    background: var(--bg);
+    padding: 48px 40px;
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    transition: background .2s;
+  }
+  .service-card:hover { background: var(--bg-2); }
+  .service-card .index {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+    margin-bottom: 48px;
+    letter-spacing: 0.02em;
+  }
+  .service-card h3 {
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .service-card p {
+    color: var(--ink-2);
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 32px;
+  }
+  .service-list {
+    margin-top: auto;
+    list-style: none;
+    border-top: 1px solid var(--rule);
+    padding-top: 20px;
+  }
+  .service-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 13px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .service-list li:last-child { border-bottom: none; }
+  .service-list li span:last-child {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+  @media (max-width: 720px) {
+    .service-grid { grid-template-columns: 1fr; }
+    .service-card { min-height: auto; padding: 36px 24px; }
+  }
+
+  /* ————— VALUES ————— */
+  .values-list {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 48px;
+  }
+  /* .values-list .empty { } */
+  .values-rows > div {
+    display: grid;
+    grid-template-columns: 60px 1fr 1.6fr;
+    gap: 40px;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .values-rows > div:last-child { border-bottom: 1px solid var(--rule); }
+  .values-rows .k {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+  .values-rows h4 {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .values-rows p {
+    color: var(--ink-2);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  @media (max-width: 900px) {
+    .values-list { grid-template-columns: 1fr; gap: 0; }
+    .values-list .empty { display: none; }
+  }
+  @media (max-width: 640px) {
+    .values-rows > div { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+  }
+
+  /* ————— PROCESS ————— */
+  .process-body {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 48px;
+  }
+  .process-steps {
+    counter-reset: step;
+  }
+  .process-steps > div {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 32px;
+    padding: 36px 0;
+    border-top: 1px solid var(--rule);
+    align-items: start;
+  }
+  .process-steps > div:last-child { border-bottom: 1px solid var(--rule); }
+  .process-steps .phase {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    padding-top: 4px;
+  }
+  .process-steps h5 {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .process-steps .what {
+    color: var(--ink-2);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  @media (max-width: 900px) {
+    .process-body { grid-template-columns: 1fr; gap: 0; }
+  }
+  @media (max-width: 640px) {
+    .process-steps > div { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+  }
+
+  /* ————— IMAGE PLATE ————— */
+  .plate-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 56px;
+  }
+  .plate {
+    aspect-ratio: 4/3;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        var(--bg-2) 0px,
+        var(--bg-2) 12px,
+        #eeeeec 12px,
+        #eeeeec 13px
+      );
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+    text-align: center;
+    padding: 24px;
+  }
+  @media (max-width: 640px) {
+    .plate-row { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  /* ————— CTA ————— */
+  .cta {
+    padding: 140px 0 100px;
+  }
+  .cta-grid {
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .cta-grid .tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+    padding-top: 12px;
+  }
+  .cta-card {
+    padding: 40px 0;
+    border-top: 1px solid var(--rule-strong);
+  }
+  .cta-card .small {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .cta-card h3 {
+    font-size: clamp(28px, 3.2vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.028em;
+    font-weight: 500;
+    margin-bottom: 16px;
+    max-width: 14ch;
+  }
+  .cta-card p {
+    color: var(--ink-2);
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 32px;
+    max-width: 36ch;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--bg);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    transition: background .2s;
+  }
+  .btn:hover { background: var(--accent); }
+  .btn.outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn.outline:hover { background: var(--ink); color: var(--bg); }
+  .btn .arr { font-family: var(--mono); font-size: 13px; }
+  @media (max-width: 900px) {
+    .cta-grid { grid-template-columns: 1fr; gap: 0; }
+    .cta-grid .tag { display: none; }
+  }
+
+  /* ————— FOOTER ————— */
+  footer.foot {
+    padding: 48px 0;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .nav-back {
+    position: fixed;
+    top: 72px;
+    right: 20px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 8px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    z-index: 19;
+  }
+  .nav-back:hover { background: var(--accent); }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="nav-back">← versions</a>
+
+<nav class="top">
+  <div class="wrap top-inner">
+    <div class="logo">Scriptiqo</div>
+    <div class="top-links">
+      <a href="#">Work</a>
+      <a href="#">Services</a>
+      <a href="#" style="color: var(--ink);">About</a>
+      <a href="#">Journal</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span> About Scriptiqo · Pune, India</div>
+    <h1>We build <span class="mute">software that</span> quietly runs businesses.</h1>
+    <p class="sub">A small, senior studio designing custom web platforms and AI agents for teams that want a partner, not a vendor.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat">
+        <div class="label">Since</div>
+        <div class="num">2019</div>
+        <div class="desc">Seven years in practice</div>
+      </div>
+      <div class="stat">
+        <div class="label">Shipped</div>
+        <div class="num">50+</div>
+        <div class="desc">Platforms, tools &amp; agents</div>
+      </div>
+      <div class="stat">
+        <div class="label">Team</div>
+        <div class="num">20</div>
+        <div class="desc">Engineers, designers, AI</div>
+      </div>
+      <div class="stat">
+        <div class="label">Retention</div>
+        <div class="num">92<span style="color: var(--ink-3); font-size:0.6em;">%</span></div>
+        <div class="desc">Clients returning in year two</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">01 / Story</div>
+      <h2>Started as two engineers. <span class="mute">Still answers its own email.</span></h2>
+    </div>
+    <div class="story-body">
+      <div class="empty"></div>
+      <div class="text">
+        <p>Scriptiqo was founded in Pune in 2019 by two engineers who had spent a decade at agencies and couldn't find one that still cared about the craft the way they did.</p>
+        <p class="muted">Seven years later we are a team of twenty — still small by design, still senior by default. We work with a short list of clients at a time, from early-stage founders to public companies, across fintech, healthcare, logistics, and climate.</p>
+        <p class="muted">In 2023 we opened a second practice: applied AI. It turned out the same principles that make a good platform make a good agent — clear constraints, tight feedback loops, and someone who stays in the room after launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">02 / Services</div>
+      <h2>Two practices. <span class="mute">One bar.</span></h2>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="index">01 — Web</div>
+        <h3>Custom web<br>development.</h3>
+        <p>Platforms, products, and marketing surfaces built from scratch for a single client. No page builders. No shared templates.</p>
+        <ul class="service-list">
+          <li><span>SaaS platforms</span><span>/ 01</span></li>
+          <li><span>Internal tools</span><span>/ 02</span></li>
+          <li><span>Headless commerce</span><span>/ 03</span></li>
+          <li><span>Marketing &amp; brand</span><span>/ 04</span></li>
+          <li><span>Design systems</span><span>/ 05</span></li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="index">02 — AI</div>
+        <h3>Applied AI<br>agent systems.</h3>
+        <p>Agents that live inside your workflows — constrained to your data, wired into your tools, measured against real outcomes.</p>
+        <ul class="service-list">
+          <li><span>Custom agent design</span><span>/ 01</span></li>
+          <li><span>RAG &amp; retrieval</span><span>/ 02</span></li>
+          <li><span>Workflow automation</span><span>/ 03</span></li>
+          <li><span>LLM ops &amp; observability</span><span>/ 04</span></li>
+          <li><span>Evaluations &amp; guardrails</span><span>/ 05</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">03 / Values</div>
+      <h2>Four positions <span class="mute">we argue from.</span></h2>
+    </div>
+
+    <div class="values-list">
+      <div class="empty"></div>
+      <div class="values-rows">
+        <div>
+          <div class="k">V01</div>
+          <h4>Small, senior teams.</h4>
+          <p>Three to five practitioners per engagement, each with five or more years of shipping work. No staff augmentation, no hidden juniors.</p>
+        </div>
+        <div>
+          <div class="k">V02</div>
+          <h4>Write it from scratch.</h4>
+          <p>We'd rather spend a week on a good abstraction than a month working around a bad one. We start with the problem, not a stack.</p>
+        </div>
+        <div>
+          <div class="k">V03</div>
+          <h4>Estimates we can defend.</h4>
+          <p>The timeline and budget you see in week one is the one we sign to. We price in the uncertainty instead of pretending it isn't there.</p>
+        </div>
+        <div>
+          <div class="k">V04</div>
+          <h4>Stay after launch.</h4>
+          <p>Every engagement ends in an operate phase — measuring, maintaining, improving. The fun part starts once real users arrive.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">04 / Process</div>
+      <h2>Four phases, <span class="mute">no surprises.</span></h2>
+    </div>
+
+    <div class="process-body">
+      <div></div>
+      <div class="process-steps">
+        <div>
+          <div class="phase">Phase 01</div>
+          <h5>Discover</h5>
+          <div class="what">Two weeks reading your docs, interviewing your team, and mapping constraints. We write the brief, not you.</div>
+        </div>
+        <div>
+          <div class="phase">Phase 02</div>
+          <h5>Shape</h5>
+          <div class="what">A single document — scope, risks, milestones, exit criteria. Both sides sign. The plan is the contract.</div>
+        </div>
+        <div>
+          <div class="phase">Phase 03</div>
+          <h5>Build</h5>
+          <div class="what">Two-week iterations. Working software at the end of each. You see the product, not a PowerPoint of the product.</div>
+        </div>
+        <div>
+          <div class="phase">Phase 04</div>
+          <h5>Operate</h5>
+          <div class="what">Post-launch retainer: observability, incident response, monthly improvements. We stay on until you ask us not to.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="plate-row">
+      <div class="plate">[ studio photography — whiteboard session ]</div>
+      <div class="plate">[ studio photography — codebase on screen ]</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div class="tag">05 / Next</div>
+      <div class="cta-card">
+        <div class="small">— Get in touch</div>
+        <h3>Have a brief? Send it over.</h3>
+        <p>We reply within 48 hours. A founder reads every inbound before it reaches the team.</p>
+        <a href="#" class="btn"><span class="__cf_email__" data-cfemail="69010c050506291a0a1b00191d001806470a0604">[email&#160;protected]</span> <span class="arr">→</span></a>
+      </div>
+      <div class="cta-card">
+        <div class="small">— See the work</div>
+        <h3>Fourteen case studies, with the numbers.</h3>
+        <p>The good, the corrected, and the still-iterating. Opens a proper archive — not a reel.</p>
+        <a href="#" class="btn outline">View our work <span class="arr">→</span></a>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+    <div>© Scriptiqo Labs Pvt. Ltd. — Pune, India</div>
+    <div>— version 2026.04</div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
